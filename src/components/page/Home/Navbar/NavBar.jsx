@@ -1,11 +1,14 @@
 import React, { useContext, useState } from 'react';
-import FaShoppingCart from '@react-icons/all-files/fa/FaShoppingCart';
-import IoIosSearch from '@react-icons/all-files/io/IoIosSearch';
+// import FaShoppingCart from '@react-icons/all-files/fa/FaShoppingCart';
+// import IoIosSearch from '@react-icons/all-files/io/IoIosSearch';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import useCart from '../../../../Hooks/useCart';
-import FaHeart from '@react-icons/all-files/fa/FaHeart';
+// import FaHeart from '@react-icons/all-files/fa/FaHeart';
 import useWishlist from '../../../../Hooks/useWishlist';
 import { AuthContext } from '../../../../providers/AuthProvider';
+import { FaShoppingCart, FaHeart } from 'react-icons/fa';
+import { IoIosSearch } from 'react-icons/io';
+import useAdmin from '../../../../Hooks/useAdmin'; // added
 
 const NavBar = () => {
   // Define the links for the navigation bar
@@ -14,6 +17,7 @@ const NavBar = () => {
    const {cartItems, refetch} = useCart();
    const {wishlistItems}=useWishlist();
    const {user,logout}=useContext(AuthContext);
+   const { isAdmin, isAdminLoading } = useAdmin(); // added
    
    // Real-time search as user types
    const handleInputChange = async (e) => {
@@ -83,18 +87,23 @@ const NavBar = () => {
             Profile
           </NavLink>
         </li>
-        <li>
-          <NavLink 
-            to="/add-product" 
-            className={({ isActive }) => 
-              `px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white hover:bg-opacity-20 ${
-                isActive ? 'bg-white bg-opacity-25 text-white font-semibold' : 'text-white'
-              }`
-            }
-          >
-            Add-Product
-          </NavLink>
-        </li>
+
+        {/* Add-Product visible only to admin */}
+        {isAdmin && (
+          <li>
+            <NavLink 
+              to="/add-product" 
+              className={({ isActive }) => 
+                `px-3 py-2 rounded-lg transition-all duration-300 hover:bg-white hover:bg-opacity-20 ${
+                  isActive ? 'bg-white bg-opacity-25 text-white font-semibold' : 'text-white'
+                }`
+              }
+            >
+              Add-Product
+            </NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink 
             to="/about" 
@@ -170,18 +179,23 @@ const NavBar = () => {
             Profile
           </NavLink>
         </li>
-        <li>
-          <NavLink 
-            to="/add-product" 
-            className={({ isActive }) => 
-              `px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100 ${
-                isActive ? 'bg-green-100 text-green-700 font-semibold' : 'text-gray-800'
-              }`
-            }
-          >
-            Add-Product
-          </NavLink>
-        </li>
+
+        {/* Add-Product visible only to admin (mobile) */}
+        {isAdmin && (
+          <li>
+            <NavLink 
+              to="/add-product" 
+              className={({ isActive }) => 
+                `px-3 py-2 rounded-lg transition-all duration-300 hover:bg-gray-100 ${
+                  isActive ? 'bg-green-100 text-green-700 font-semibold' : 'text-gray-800'
+                }`
+              }
+            >
+              Add-Product
+            </NavLink>
+          </li>
+        )}
+
         <li>
           <NavLink 
             to="/about" 

@@ -1,7 +1,7 @@
 import React from "react";
 import NavBar from "./Navbar/NavBar";
 import Carosel from "./Carosel/Carosel";
-import Card from "./Card/Card";
+import Card from "./Card/FeatureCard";
 import ProductCard from "./ProductCard/ProductCard";
 import Category from "./categeory/Category";
 import Footer from "./Footer/Footer";
@@ -9,6 +9,8 @@ import { Helmet } from "react-helmet-async";
 import RecommendationSection from "../../Recomandation";
 import Testimonials from "../../TestoMonial";
 import BlogSection from "../../Blog";
+import FeatureCard from "./Card/FeatureCard";
+
 
 const Home = () => {
   return (
@@ -16,7 +18,7 @@ const Home = () => {
   <NavBar />
   <Carosel className="py-8" />
   <div className="px-4 sm:px-8 md:px-16">
-    <Card />
+    <FeatureCard></FeatureCard>
   </div>
   <div className="px-4 sm:px-8 md:px-16">
     <Category />

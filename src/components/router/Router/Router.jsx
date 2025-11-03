@@ -21,6 +21,7 @@ import Test from "../../page/test/test";
 import Analytics from "../../page/Home/Navbar/Dashboard/Analytics";
 import ManageProduct from "../../page/Home/Navbar/Dashboard/Admin/ManageProduct";
 import MyOrder from "../../page/Home/Navbar/Dashboard/NormalUser/MyOrder";
+import AdminRoute from "./AdminRoute";
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,7 @@ const router = createBrowserRouter([
       },
       {
         path:'/add-product',
-        element:<PrivateRouter><AddProduct></AddProduct></PrivateRouter>
+        element:<PrivateRouter><AdminRoute><AddProduct></AddProduct></AdminRoute></PrivateRouter>
       },
       {
         path: "/product/:id",

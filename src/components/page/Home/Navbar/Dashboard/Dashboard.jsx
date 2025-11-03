@@ -407,19 +407,29 @@ const Dashboard = () => {
               <p className="text-sm text-gray-600">Overview and quick access to your account.</p>
             </div>
 
+       
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Total Users</div>
-                <div className="text-2xl font-bold">{users?.length ?? 0}</div>
-              </div>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Total Products</div>
-                <div className="text-2xl font-bold">{products?.length ?? 0}</div>
-              </div>
-              <div className="p-4 bg-gray-50 rounded-lg">
-                <div className="text-sm text-gray-500">Cart Items</div>
-                <div className="text-2xl font-bold">{cartItems?.length ?? 0}</div>
-              </div>
+              {isAdmin ? (
+                <>
+                  <div className="p-4 bg-gray-50 rounded-lg">
+                    <div className="text-sm text-gray-500">Total Users</div>
+                    <div className="text-2xl font-bold">{users?.length ?? 0}</div>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-lg">
+                    <div className="text-sm text-gray-500">Total Products</div>
+                    <div className="text-2xl font-bold">{products?.length ?? 0}</div>
+                  </div>
+                  <div className="p-4 bg-gray-50 rounded-lg">
+                    <div className="text-sm text-gray-500">Cart Items</div>
+                    <div className="text-2xl font-bold">{cartItems?.length ?? 0}</div>
+                  </div>
+                </>
+              ) : (
+                <div className="p-4 bg-gray-50 rounded-lg">
+                  <div className="text-sm text-gray-500">Cart Items</div>
+                  <div className="text-2xl font-bold">{cartItems?.length ?? 0}</div>
+                </div>
+              )}
             </div>
 
             {/* Show Analytics directly for /dashboard/analytics route or nested content */}
